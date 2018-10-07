@@ -10,7 +10,8 @@ const ROOT_PATH = pathLib.resolve(__dirname);
 const ENTRY_PATH = pathLib.resolve(ROOT_PATH, 'app');
 const OUTPUT_PATH = pathLib.resolve(ROOT_PATH, 'build');
 console.log(pathLib.resolve(ENTRY_PATH, 'index.js'));
-
+console.log('aaa')
+console.log(pathLib.resolve(__dirname,"./app/components"))
 module.exports = {
     entry: {
         index: [
@@ -118,7 +119,10 @@ module.exports = {
         }
     },
     resolve: {
-        extensions: ['.js', '.json', '.sass', '.scss', '.less', 'jsx']
+        extensions: ['.js', '.json', '.sass', '.scss', '.less', 'jsx'],
+        alias: {
+            components:pathLib.resolve(__dirname,"./app/components"),
+        }
     }
 };
 

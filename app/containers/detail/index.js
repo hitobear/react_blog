@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import style from './index.less'
 import {Link} from 'react-router-dom'
+import {Icon} from 'components'
 export class Detail extends Component {
     render(){
         const {articleContent,title,author,viewCount,commentCount,time,avatar} = {
