@@ -61,7 +61,14 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                use: ["style-loader", 'css-loader', "postcss-loader", "less-loader"]
+                use: ["style-loader", {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                        localIdentName: '[name]-[local]-[hash:base64:5]',
+                        importLoaders: 1
+                    }
+                }, "postcss-loader", "less-loader"]
             },
             {
                 test: /\.(png|jpg|gif|JPG|GIF|PNG|BMP|bmp|JPEG|jpeg)$/,

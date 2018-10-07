@@ -10,7 +10,8 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import RoutFront from './routFront'
 import {Home} from './home'
-
+import {Detail} from './detail'
+import './index.less'
 
 class AppIndex extends Component {
 
@@ -39,8 +40,10 @@ class AppIndex extends Component {
         return (
             <Router>
                 <div>
+                    abcde
                     <Switch>
                         <Route  path='/home' component={Home}/>
+                        <Route path={`/detail/:id`} component={Detail}/>
                         <Route  component={RoutFront}/>
                     </Switch>
                 </div>

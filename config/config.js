@@ -6,7 +6,7 @@ module.exports = {
     dbHost:"localhost",
     dbPort:"27017",
     app:{
-        title:"personal blog",
+        title:"lt blog",
         description:'Nealyang\'s personal blog demo',
         head:{
             titleTemplate:'blog',
