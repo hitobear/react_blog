@@ -14,13 +14,19 @@ export class Detail extends Component {
             avatar:'http://blog-server.hunger-valley.com/avatar/48.jpg',
         };
         return (<div className='main'>
-            <Icon type='calender' spaceright={true}/>abcd
             <section className='user_info'>
-                <img src={avatar} className='avatar'></img>
                 <h3 className='title'>{title}</h3>
+                <img src={avatar} className='avatar'></img>
                 <p className='desc'>
                     <Link to='/' className='userlink'>{author}</Link>
-                    {time}
+                    <div className='restdesc'>
+                        <Icon type="calender" className='inline-right-4'/>
+                        {time}
+                        <Icon type="eye" className='inline-left-8 inline-right-4'/>
+                        {viewCount}
+                        <Icon type="message" className='inline-left-8 inline-right-4'/>
+                        {commentCount}
+                    </div>
                 </p>
             </section>
             <section className='articleContent'>
