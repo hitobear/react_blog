@@ -11,7 +11,7 @@ export default class Avatar extends Component {
 
     render(){
         const {
-            prefixCls, shape, size, src, icon, className, alt, ...others
+            prefixCls, shape, size, src, icon, className,caption, alt, ...others
           } = this.props;
         const sizeCls = classNames({
             [`${prefixCls}-lg`]: size === 'large',
@@ -29,6 +29,7 @@ export default class Avatar extends Component {
             fontSize: icon ? size / 2 : 18,
         } : {};
         let children=this.props.children;
+        let captionspan= {caption}?<span className='avacaption'>{caption}</span>:null;
         if (src) {
             children = (
               <img
@@ -47,6 +48,7 @@ export default class Avatar extends Component {
               className={classString}
             >
               {children}
+              {captionspan}
             </span>
           );
     }
