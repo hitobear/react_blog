@@ -4,6 +4,7 @@ import {Provider} from 'react-redux'
 import {AppContainer} from 'react-hot-loader'
 import configureStore from './configureStore'
 import IndexApp from './containers'
+import {Header} from 'components'
 let div = document.createElement('div');
 div.setAttribute('id', 'app');
 document.body.appendChild(div);

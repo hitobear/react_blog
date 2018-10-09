@@ -13,7 +13,7 @@ export class Detail extends Component {
             time:'2017-8-12',
             avatar:'http://blog-server.hunger-valley.com/avatar/48.jpg',
         };
-        return (<div className='main'>
+        return (<div className='detailwrapper'>
             <section className='user_info'>
                 <h3 className='title'>{title}</h3>
                 <img src={avatar} className='avatar'></img>

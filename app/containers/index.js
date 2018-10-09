@@ -40,13 +40,15 @@ class AppIndex extends Component {
         let {isFetching} = this.props;
         return (
             <Router>
-                <div>
+                <div className='appwrapper'>
                     <Header></Header>
+                    <main className='main'>
                     <Switch>
                         <Route  path='/home' component={Home}/>
                         <Route path={`/detail/:id`} component={Detail}/>
                         <Route  component={RoutFront}/>
                     </Switch>
+                    </main>
                 </div>
             </Router>
         )
