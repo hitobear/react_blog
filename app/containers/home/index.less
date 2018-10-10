@@ -1,14 +1,20 @@
 .post_item{
     display: grid;
     grid: auto auto/80px 1fr;
-    margin: 20px 0;
+    padding: 1.5rem 0;
+    border-top:1px solid#0000001a;
     
     .desc_title{
         grid-column: 2;
         grid-row: 1;
-        font-size: 1.2em;
+        font-size: 1.17em;
         font-weight: bold;
-       
+    }
+    .desc_info{
+        line-height:1;
+        margin-top:0;
+        grid-column: 2;
+        grid-row: 2;
     }
 }
 .avatar{
@@ -18,4 +24,8 @@
     margin-left: 0;
     text-align: center;
     align-self: center;
+}
+.avatar_caption{
+    font-size: 12px;
+    color: #999;
 }

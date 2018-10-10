@@ -16,7 +16,22 @@ export class Home extends Component {
 
         return <div>
             <Link to='/detail/456' className='post_item link'>
-                 <p  className='avatar'><Avatar caption={author} shape="circle" src={avatar}></Avatar></p>
+                 <p  className='avatar'><Avatar shape="circle" src={avatar} caption={author}></Avatar>
+                 </p>
+                 <p className='desc_title'>
+                    <span className='article_title'>{title}</span>
+                    <span className='article_time'>{time}</span>
+                 </p>
+                 <p className='desc_info'>
+                        <Icon type="eye" className='inline-left-8 inline-right-4'/>
+                        {viewCount}
+                        <Icon type="message" className='inline-left-8 inline-right-4'/>
+                        {commentCount}
+                 </p>
+            </Link>
+            <Link to='/detail/456' className='post_item link'>
+                 <p  className='avatar'><Avatar shape="circle" src={avatar} caption={author}></Avatar>
+                 </p>
                  <p className='desc_title'>
                     <span className='article_title'>{title}</span>
                     <span className='article_time'>{time}</span>
