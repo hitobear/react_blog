@@ -24,7 +24,6 @@ const Icon=(props)=>{
       'space-right':spaceright?true:false,
       'space-left':spaceleft?true:false,
     }, className);
-    console.log(classString)
     return <span className={classString} {...restProps}/>;
 };
 

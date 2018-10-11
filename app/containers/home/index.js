@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import {Avatar,Icon} from 'components'
+import {Menu} from '../components'
 import {Link} from 'react-router-dom'
 import './index.less'
 export class Home extends Component {
@@ -15,6 +16,7 @@ export class Home extends Component {
         }
 
         return <div>
+            <Menu history={this.props.history}></Menu>
             <Link to='/detail/456' className='post_item link'>
                  <p  className='avatar'><Avatar shape="circle" src={avatar} caption={author}></Avatar>
                  </p>
