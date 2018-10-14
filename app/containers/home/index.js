@@ -4,6 +4,7 @@ import {Menu} from '../components'
 import {Link} from 'react-router-dom'
 import {Row,Col} from 'antd'
 import ArticleList from './components/articleList'
+import Sider from './components/sider'
 import './index.less'
 export class Home extends Component {
     
@@ -51,7 +52,7 @@ export class Home extends Component {
                         lg={{ span: 6, offset: 1 }}
                         md={{ span: 6, offset: 1 }}
                         xs={{ span: 24 }}>
-                        sider ss
+                        <Sider />
                     </Col>
             </Row>
         </div>
