@@ -25,6 +25,7 @@ export class Home extends Component {
             viewCount:100,
             commentCount:20,
             time:'1天前',
+            tags:'javascript,css'
         },{
             avatar:'http://blog-server.hunger-valley.com/avatar/48.jpg',
             title:'测试文章',
@@ -33,6 +34,7 @@ export class Home extends Component {
             viewCount:100,
             commentCount:20,
             time:'1天前',
+            tags:'javascript,css,react'
         }]
 
         return <div>
