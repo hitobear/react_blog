@@ -8,6 +8,9 @@ body{
     .link{
          color: #333;
          text-decoration: none;
+         &:hover{
+             color:#333;
+         }
     }
     li{
         list-style: none;
@@ -25,28 +28,29 @@ body{
 
 
 @media (min-width: 544px){
-    .container{
+    .container1{
         max-width: 576px;
     }
 }
 @media (min-width: 768px){
-    .container{
+    .container1{
         max-width: 720px;
     }
 }
 @media (min-width: 992px){
-    .container{
+    .container1{
         max-width: 970px;
     }
 }
 @media (min-width: 1200px){
-    .container{
+    .container1{
         max-width: 1140px;
     }
 }
 .container{
     margin-left:auto;
     margin-right:auto;
+    padding:20px 20px;
 }
 
 #app, body, html {
@@ -54,6 +58,9 @@ body{
 }
 .appwrapper{
     min-height:100%;
+}
+body{
+    background: #f0f2f5;
 }
 *{
     margin:0;

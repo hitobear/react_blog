@@ -68,7 +68,9 @@ module.exports = {
                         localIdentName: '[name]-[local]-[hash:base64:5]',
                         importLoaders: 1
                     }
-                }, "postcss-loader", "less-loader"]
+                }, "postcss-loader", {loader:"less-loader",options:{
+                    javascriptEnabled: true 
+                }}]
             },
             {
                 test: /\.(png|jpg|gif|JPG|GIF|PNG|BMP|bmp|JPEG|jpeg)$/,
