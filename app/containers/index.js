@@ -11,7 +11,7 @@ import {bindActionCreators} from 'redux'
 import RoutFront from './routFront'
 import {Home} from './home'
 import {Detail} from './detail'
-import Header from '../components/header'
+import {Header,Footer} from '../components'
 import './index.less'
 
 class AppIndex extends Component {
@@ -42,13 +42,14 @@ class AppIndex extends Component {
             <Router>
                 <div className='appwrapper'>
                     <Header></Header>
-                    <main className='main'>
+                    <main className='main container'>
                     <Switch>
                         <Route  path='/home' component={Home}/>
                         <Route path={`/detail/:id`} component={Detail}/>
                         <Route  component={RoutFront}/>
                     </Switch>
                     </main>
+                    <Footer></Footer>
                 </div>
             </Router>
         )

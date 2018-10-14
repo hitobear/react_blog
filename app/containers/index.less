@@ -14,24 +14,47 @@ body{
     }
 }
 .appwrapper {
-    display:grid;
-    grid-template-columns: 12% auto 12%;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas: "header header header" ". main ." "footer footer footer";
-    
-    .header{
-        grid-area: header;
-    }
-    .main{
-        grid-area: main;
+    display:flex;
+    flex-direction: column;
+}
+.main{
+    flex:1;
+    width:100%;
+}
+
+
+
+@media (min-width: 544px){
+    .container{
+        max-width: 576px;
     }
 }
-@media (max-width: 768px){
-    .appwrapper{
-        grid-template-columns: 10px auto 10px;
+@media (min-width: 768px){
+    .container{
+        max-width: 720px;
     }
 }
-.appwrapper,#app, body, html {
-    height:
-    100%;
+@media (min-width: 992px){
+    .container{
+        max-width: 970px;
+    }
+}
+@media (min-width: 1200px){
+    .container{
+        max-width: 1140px;
+    }
+}
+.container{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#app, body, html {
+    height:100%;
+}
+.appwrapper{
+    min-height:100%;
+}
+*{
+    margin:0;
 }

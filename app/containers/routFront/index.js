@@ -21,7 +21,6 @@ class RoutFront extends Component{
         return(
             <div>
                 <div>
-                   header
                 </div>
                 <div>
                     <div>

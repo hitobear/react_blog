@@ -16,7 +16,7 @@ export class Home extends Component {
         }
 
         return <div>
-            <Menu history={this.props.history}></Menu>
+           
             <Link to='/detail/456' className='post_item link'>
                  <p  className='avatar'><Avatar shape="circle" src={avatar} caption={author}></Avatar>
                  </p>
