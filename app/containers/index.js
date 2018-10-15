@@ -12,6 +12,8 @@ import RoutFront from './routFront'
 import {Home} from './home'
 import {Detail} from './detail'
 import {Header,Footer} from '../components'
+import Admin from './admin/admin'
+import Front from './front'
 import './index.less'
 
 class AppIndex extends Component {
@@ -40,17 +42,10 @@ class AppIndex extends Component {
         let {isFetching} = this.props;
         return (
             <Router>
-                <div className='appwrapper'>
-                    <Header></Header>
-                    <main className='main container'>
                     <Switch>
-                        <Route  path='/home' component={Home}/>
-                        <Route path={`/detail/:id`} component={Detail}/>
-                        <Route  component={RoutFront}/>
+                        <Route  path='/admin' component={Admin}/>
+                        <Route  component={Front}/>
                     </Switch>
-                    </main>
-                    <Footer></Footer>
-                </div>
             </Router>
         )
     }
