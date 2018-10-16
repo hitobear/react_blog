@@ -1,0 +1,35 @@
+.admin_layout{
+    display: flex;
+    flex-direction: row;
+    background: white;
+
+    .admin_sider{
+        flex: 0 0 200px;
+        max-width: 200px;
+        min-width: 200px;
+        width: 200px;
+        background: #404040;
+    }
+    .content_container{
+        height:100vh;
+        overflow:scroll;
+        flex:auto;
+        display:flex;
+        flex-direction: column;
+        background:#f0f2f5;
+        .content_header{
+            height:60px;
+            background:#fff;
+        }
+        .content_main{
+            flex-grow:1;
+            padding:24px;
+        }
+        .content_footer{
+            text-align: center;
+            padding:1rem 0;
+        }
+    }
+   
+   
+}

@@ -123,6 +123,7 @@ module.exports = {
         extensions: ['.js', '.json', '.sass', '.scss', '.less', 'jsx'],
         alias: {
             components:pathLib.resolve(__dirname,"./app/components"),
+            root:pathLib.resolve(__dirname,"./app"),
         }
     }
 };

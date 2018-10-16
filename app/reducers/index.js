@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux'
 import user from './user'
+import admin from './admin'
 const initialState = {
     isFetching: true,
     msg: {
@@ -77,7 +78,8 @@ export function reducer(state = initialState, action) {
 
 export default combineReducers({
     globalState: reducer,
-    user
+    user,
+    admin,
 })
 
 
