@@ -1,9 +1,10 @@
-import {reducer as blog} from "./adminPublish";
-import {combineReducers} from 'redux'
-
+import {reducer as publish} from "./adminPublish";
+import {combineReducers} from 'redux';
+import {blogs} from "./adminBlogs"
 
 const admin = combineReducers({
-    blog,
+    blogs,
+    publish,
 });
 
 export default admin

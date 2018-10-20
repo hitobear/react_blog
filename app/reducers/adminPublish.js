@@ -8,6 +8,7 @@ export const actionTypes = {
     UPDATING_TITLE:"UPDATING_TITLE",
     UPDATING_DESCRIPTION:"UPDATING_DESCRIPTION",
     UPDATING_CONTENT:"UPDATING_CONTENT",
+    SAVE_BLOG:"SAVE_BLOG",
 };
 export const actions = {
     update_title:function (title) {
@@ -26,6 +27,12 @@ export const actions = {
         return{
             type:actionTypes.UPDATING_CONTENT,
             content
+        }
+    },
+    save_blog:function (data) {
+        return{
+            type:actionTypes.SAVE_BLOG,
+            data
         }
     }
 };

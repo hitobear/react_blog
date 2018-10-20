@@ -25,9 +25,11 @@ app.use(session({
     cookie: {maxAge: 60 * 1000 * 30}//过期时间
 }));
 
-
+console.log('apiserver...')
 //展示页面路由
 app.use('/', require('./main'));
+//管理页面路由
+app.use('/admin', require('./admin'));
 
 mongoose.Promise = require('bluebird');
 mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/ltblog`, function (err) {
@@ -41,7 +43,7 @@ mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/ltblog`, function 
         if (err) {
             console.error('err:', err);
         } else {
-            console.info(`===> api server is running at ${config.apiHost}:${config.apiPort}`)
+            console.info(`===> api server is running at ${config.apiHost}:${port}`)
         }
     });
 });

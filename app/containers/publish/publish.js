@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
+import {actions} from "../../reducers/adminPublish";
 import {connect} from 'react-redux'
 import {Input,Button} from 'antd'
-import {actions} from "../../reducers/adminPublish";
 import './index.less'
 const { TextArea } = Input
 
-const {update_content, update_description, update_title} = actions;
+const {update_content, update_description, update_title,save_blog} = actions;
 class Publish extends Component {
 
      //标题输入框
@@ -26,6 +26,7 @@ class Publish extends Component {
         data.description=this.props.description;
         data.content = this.props.content;
         console.log(`description${data.description};title:${data.title};content:${data.title}`);
+        this.props.save_blog(data);
     };
     render(){
         return (<div className='publish_container_wrapper'>
@@ -57,7 +58,7 @@ class Publish extends Component {
     }
 }
 function mapStateToProps(state) {
-    const {title, description, content} = state.admin.blog;
+    const {title, description, content} = state.admin.publish;
     return {
         title,
         description,
@@ -70,6 +71,7 @@ function mapDispatchToProps(dispatch) {
         update_title: bindActionCreators(update_title, dispatch),
         update_description: bindActionCreators(update_description, dispatch),
         update_content: bindActionCreators(update_content, dispatch),
+        save_blog: bindActionCreators(save_blog, dispatch),
     }
 }
 

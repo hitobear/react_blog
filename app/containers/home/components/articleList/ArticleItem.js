@@ -6,6 +6,7 @@ import {color} from '../../../utils/utils'
 export  class ArticleItem extends Component{
     
     
+    
     render(){
         const{tags,id}=this.props.data
         console.log('tags')
