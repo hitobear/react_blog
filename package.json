@@ -25,6 +25,7 @@
     "http-proxy": "^1.17.0",
     "mongoose": "^5.3.1",
     "nodeman": "^1.1.2",
+    "path-to-regexp": "^2.4.0",
     "qs": "^6.5.2",
     "react": "^16.5.2",
     "react-addons-pure-render-mixin": "^15.6.2",

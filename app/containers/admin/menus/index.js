@@ -2,13 +2,25 @@ import React from 'react'
 import {Menu,Icon,Layout} from 'antd';
 import { Link } from 'react-router-dom'
 import './index.less'
-const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys, menu }) => {
+import pathToRegexp from 'path-to-regexp'
 
+const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu }) => {
+
+  // 寻找选中路由
+  let defaultSelectedKeys
+  for (let item of menu) {
+    if (item.router && pathToRegexp(item.router).exec(location.pathname)) {
+        defaultSelectedKeys = item.router
+      break
+    }
+  }
+  console.log(`pathname${location.pathname}`)
+  console.log(`pathname${defaultSelectedKeys}`)
     const renderMenuItem =
         ({ router, name, icon, link, ...props }) =>
             <Menu.Item
                 key={router}
-                className='sidermenu_item'
+                className='sidermenu_item'              
                 {...props}
                
             >
@@ -26,7 +38,7 @@ const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys, menu }) => {
     }
 
     return (
-        <Menu theme="dark" className='sidermenu' defaultSelectedKeys={[menu[0].router]}>{menu&&getMenus(menu)}</Menu>
+        <Menu theme="dark" className='sidermenu' defaultSelectedKeys={defaultSelectedKeys}>{menu&&getMenus(menu)}</Menu>
     )
 
 }
