@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {Home} from '../home'
+import Home from '../home'
 import {Detail} from '../detail'
 import {Header,Footer} from '../../components'
 import './index.less'

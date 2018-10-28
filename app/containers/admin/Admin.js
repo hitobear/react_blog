@@ -13,9 +13,6 @@ export default class Admin extends Component {
 
     render(){
         const {url} = this.props.match;
-        console.log('match1...')
-        console.log(this.props.match)
-        console.log(url)
         return (<div className='admin_layout'>
             <aside className='admin_sider'><Menus menu={menu} location={this.props.history.location}></Menus></aside>
             <div className='content_container'>

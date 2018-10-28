@@ -15,7 +15,7 @@ export  class ArticleItem extends Component{
         <div className='item_main'>
                     <p className='item_content'  onClick={()=>this.props.history.push(`/detail/123}`)}>
                         <h4 className='article_title'>{this.props.data.title}</h4>
-                        <p className='article_description'>{this.props.data.summary}</p>
+                        <p className='article_description'>{this.props.data.description}</p>
                      </p>
                      <ul className='desc_info'>
                             <li className='desc_item'>

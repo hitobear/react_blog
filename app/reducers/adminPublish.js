@@ -8,7 +8,9 @@ export const actionTypes = {
     UPDATING_TITLE:"UPDATING_TITLE",
     UPDATING_DESCRIPTION:"UPDATING_DESCRIPTION",
     UPDATING_CONTENT:"UPDATING_CONTENT",
+    UPDATING_ID:"UPDATING_ID",
     SAVE_BLOG:"SAVE_BLOG",
+    
 };
 export const actions = {
     update_title:function (title) {
@@ -51,6 +53,10 @@ export function reducer(state=initialState,action) {
         case actionTypes.UPDATING_CONTENT:
             return{
                 ...state,content:action.content
+            };
+        case actionTypes.UPDATING_ID:
+            return{
+                ...state,id:action.id
             };
         default:
             return state;

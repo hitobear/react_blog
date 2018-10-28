@@ -14,8 +14,6 @@ const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu 
       break
     }
   }
-  console.log(`pathname${location.pathname}`)
-  console.log(`pathname${defaultSelectedKeys}`)
     const renderMenuItem =
         ({ router, name, icon, link, ...props }) =>
             <Menu.Item
@@ -31,8 +29,6 @@ const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu 
             </Menu.Item>
     const getMenus = (menu)=>{
         return  menu.map(item =>{
-            console.log('rendeitem')
-            console.log(item)
            return renderMenuItem(item)
         })
     }

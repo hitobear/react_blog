@@ -4,9 +4,7 @@ import {actionsTypes as IndexActionTypes} from '../reducers'
 import {actionTypes as PublishActionTypes} from '../reducers/adminPublish'
 
 export function* saveBlog(data) {
-    console.log('before addblog')
     yield put({type: IndexActionTypes.FETCH_START});
-    console.log('..addblog')
     try {
         let id = yield select(state=>state.admin.publish.id);
         if(id){

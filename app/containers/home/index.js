@@ -5,14 +5,18 @@ import {Link} from 'react-router-dom'
 import {Row,Col} from 'antd'
 import ArticleList from './components/articleList'
 import Sider from './components/sider'
+import {connect} from 'react-redux'
+import {actions as frontActions} from '../../reducers/front'
+import {bindActionCreators} from 'redux'
+const {get_front_blog_list} = frontActions;
 import './index.less'
-export class Home extends Component {
-    
+class Home extends Component {
     render(){
+        console.log('...renderhome')
         const {avatar,author,title,viewCount,commentCount,time} ={
             avatar:'http://blog-server.hunger-valley.com/avatar/48.jpg',
             title:'测试文章',
-            summary:'这是总结内容哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+            description:'这是总结内容哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
             author:'litong',
             viewCount:100,
             commentCount:20,
@@ -21,7 +25,7 @@ export class Home extends Component {
         const data=[{
             avatar:'http://blog-server.hunger-valley.com/avatar/48.jpg',
             title:'测试文章',
-            summary:'这是总结内容哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+            description:'这是总结内容哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
             author:'litong',
             viewCount:100,
             commentCount:20,
@@ -30,7 +34,7 @@ export class Home extends Component {
         },{
             avatar:'http://blog-server.hunger-valley.com/avatar/48.jpg',
             title:'测试文章',
-            summary:'这是总结内容哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+            description:'这是总结内容哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
             author:'litong',
             viewCount:100,
             commentCount:20,
@@ -46,7 +50,7 @@ export class Home extends Component {
                     xs={{ span: 24 }}
                     className="list-wrapper"
                 >
-                    <ArticleList data={data} history={this.props.history}/>
+                    <ArticleList data={this.props.blogList} history={this.props.history}/>
                     </Col>
                     <Col 
                         lg={{ span: 6, offset: 1 }}
@@ -57,4 +61,25 @@ export class Home extends Component {
             </Row>
         </div>
     }
+
+    componentDidMount() {
+        this.props.get_front_blog_list()
+    }
 }
+
+function mapStateToProps(state) {
+    return {
+        blogList: state.front.blogList
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        get_front_blog_list: bindActionCreators(get_front_blog_list, dispatch),
+    }
+}
+
+ export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home);

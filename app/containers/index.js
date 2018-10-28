@@ -34,9 +34,7 @@ class AppIndex extends Component {
         });
         that.props.clear_msg();
     };
-    componentWillMount(){
-        console.log('willmountindex')
-    }
+
     
     render() {
         let {isFetching} = this.props;

@@ -41,7 +41,7 @@ export function* deleteBlogFlow () {
 export function* editBlog (id) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
-        return yield call(get, `/getBlogDetail?id=${id}`);
+        return yield call(get, `/getBlog?id=${id}`);
     } catch (err) {
         yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
     } finally {
@@ -57,12 +57,12 @@ export function* editBlogFlow () {
             if (res.code === 0) {
                 let title = res.data.title;
                 let content = res.data.content;
-                let tags = res.data.tags;
+                let description = res.data.description;
                 let id = res.data._id;
-                yield put({type:PublishTypes.SET_ARTICLE_ID,id});
-                yield put({type:PublishTypes.UPDATING_TAGS,tags});
+                yield put({type:PublishTypes.UPDATING_ID,id});
+                yield put({type:PublishTypes.UPDATING_DESCRIPTION,description});
                 yield put({type:PublishTypes.UPDATING_CONTENT,content});
-                yield put({type:PublishBlogTypes.UPDATING_TITLE,title});
+                yield put({type:PublishTypes.UPDATING_TITLE,title});
             } else {
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
             }
@@ -100,3 +100,4 @@ export function* getBlogListFlow () {
         }
     }
 }
+

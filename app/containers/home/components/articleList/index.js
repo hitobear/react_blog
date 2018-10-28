@@ -17,13 +17,6 @@ export default class ArticleList extends Component{
                         <ArticleItem history={this.props.history} key={index} data={item}/>
                     ))
                 }
-                <List
-                    dataSource={this.props.data}
-                    renderItem={item => (
-                        <List.Item>
-
-                        </List.Item>)}>
-                </List>
             </div>
         )
     }

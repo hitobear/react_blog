@@ -25,7 +25,7 @@ export const actions = {
     },
     edit_blog: function (id) {
         return {
-            type: actionTypes.EDIT_BLOG,
+            type: actionTypes.EDIT_Blog,
             id
         }
     }

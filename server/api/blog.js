@@ -32,7 +32,7 @@ router.post('/updateBlog',(req,res)=>{
     const {
         title,
         content,
-        descirption,
+        description,
         id
     } = req.body;
     Blog.update({_id:id},{title,content,description})

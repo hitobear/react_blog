@@ -25,7 +25,6 @@ class Publish extends Component {
         data.title = this.props.title;
         data.description=this.props.description;
         data.content = this.props.content;
-        console.log(`description${data.description};title:${data.title};content:${data.title}`);
         this.props.save_blog(data);
     };
     render(){
@@ -35,6 +34,7 @@ class Publish extends Component {
             <Input  className='publish_input'
                         placeholder={'请输入文章标题'}
                         onChange={this.titleOnChange}
+                        value={this.props.title}
                         type='text'/>
             <TextArea 
                 className='publish_input'
@@ -42,6 +42,7 @@ class Publish extends Component {
                 autosize={{ minRows: 5}}
                 placeholder="文章摘要" 
                 onChange={this.descOnChange}
+                value={this.props.description}
               />
              <TextArea 
                 className='publish_input'
@@ -49,6 +50,7 @@ class Publish extends Component {
                 autosize={{ minRows: 15}}
                 placeholder="文章内容 markdown格式"
                 onChange={this.contentOnChange}
+                value={this.props.content}
               />
             <div className='controlbtns'>
                 <Button type="primary" onClick={this.publishArticle}>发布</Button>

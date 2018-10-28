@@ -6,7 +6,7 @@ import {List,Card,Icon,Button} from 'antd'
 import {Tag} from 'components'
 import {color} from '../utils/utils'
 import './manage.less'
-const {get_blog_list} =actions
+const {get_blog_list,edit_blog} =actions
 class  Manage extends Component {
     componentDidMount() {
        
@@ -63,6 +63,10 @@ class  Manage extends Component {
                       <Button
                         key={item.created_at}
                         type="primary"
+                        onClick={()=>{
+                            this.props.edit_blog(item._id);
+                            this.props.history.push('/admin/publish')
+                        }}
                         ghost
                       >
                         编辑
@@ -90,6 +94,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         get_blog_list: bindActionCreators(get_blog_list, dispatch),
+        edit_blog: bindActionCreators(edit_blog, dispatch),
     }
 }
 
