@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {actions} from "../../reducers/adminPublish";
 import {connect} from 'react-redux'
-import {Input,Button} from 'antd'
+import {Input,Button,Row,Col} from 'antd'
 import './index.less'
 const { TextArea } = Input
 
@@ -19,6 +19,35 @@ class Publish extends Component {
     contentOnChange=(e)=>{
         this.props.update_content(e.target.value)
     }
+    getArticle=()=>{
+        return (<div className='publish_container'>
+        <h2 className='publish_description'>发布文章a</h2>
+        <Input  className='publish_input'
+                    placeholder={'请输入文章标题'}
+                    onChange={this.titleOnChange}
+                    value={this.props.title}
+                    type='text'/>
+        <TextArea 
+            className='publish_input'
+            rows={6} 
+            autosize={{ minRows: 5}}
+            placeholder="文章摘要" 
+            onChange={this.descOnChange}
+            value={this.props.description}
+          />
+         <TextArea 
+            className='publish_input'
+            rows={6} 
+            autosize={{ minRows: 15}}
+            placeholder="文章内容 markdown格式"
+            onChange={this.contentOnChange}
+            value={this.props.content}
+          />
+        <div className='controlbtns'>
+            <Button type="primary" onClick={this.publishArticle}>发布</Button>
+        </div>
+        </div>)
+    }
     //发表
     publishArticle=()=> {
         let data = {};
@@ -27,35 +56,17 @@ class Publish extends Component {
         data.content = this.props.content;
         this.props.save_blog(data);
     };
+
     render(){
         return (<div className='publish_container_wrapper'>
-            <div className='publish_container'>
-            <h2 className='publish_description'>发布文章</h2>
-            <Input  className='publish_input'
-                        placeholder={'请输入文章标题'}
-                        onChange={this.titleOnChange}
-                        value={this.props.title}
-                        type='text'/>
-            <TextArea 
-                className='publish_input'
-                rows={6} 
-                autosize={{ minRows: 5}}
-                placeholder="文章摘要" 
-                onChange={this.descOnChange}
-                value={this.props.description}
-              />
-             <TextArea 
-                className='publish_input'
-                rows={6} 
-                autosize={{ minRows: 15}}
-                placeholder="文章内容 markdown格式"
-                onChange={this.contentOnChange}
-                value={this.props.content}
-              />
-            <div className='controlbtns'>
-                <Button type="primary" onClick={this.publishArticle}>发布</Button>
-            </div>
-            </div>
+            <Row>
+                <Col span={18}>
+                    {this.getArticle()}
+                </Col>
+                <Col span={6}>
+                测试
+                </Col>
+            </Row>
         </div>)
     }
 }
