@@ -3,12 +3,14 @@ const initialState={
     title:'',
     content:'',
     description:'',
+    tags:[{id:1,name:'abc'},{id:2,name:'Javascript'},{id:3,name:'CSS'}],
 };
 export const actionTypes = {
     UPDATING_TITLE:"UPDATING_TITLE",
     UPDATING_DESCRIPTION:"UPDATING_DESCRIPTION",
     UPDATING_CONTENT:"UPDATING_CONTENT",
     UPDATING_ID:"UPDATING_ID",
+    UPDATING_DATA:"UPDATING_DATA",
     SAVE_BLOG:"SAVE_BLOG",
     
 };
@@ -29,6 +31,12 @@ export const actions = {
         return{
             type:actionTypes.UPDATING_CONTENT,
             content
+        }
+    },
+    update_data:function (data) {
+        return{
+            type:actionTypes.UPDATING_DATA,
+            data
         }
     },
     save_blog:function (data) {
@@ -58,6 +66,10 @@ export function reducer(state=initialState,action) {
             return{
                 ...state,id:action.id
             };
+        case actionTypes.UPDATEING_DATA:
+            return {
+                ...state,...action.data
+            }
         default:
             return state;
     }

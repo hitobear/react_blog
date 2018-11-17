@@ -64,8 +64,7 @@ class  Manage extends Component {
                         key={item.created_at}
                         type="primary"
                         onClick={()=>{
-                            this.props.edit_blog(item._id);
-                            this.props.history.push('/admin/publish')
+                            this.props.history.push(`/admin/edit/${item._id}`)
                         }}
                         ghost
                       >
