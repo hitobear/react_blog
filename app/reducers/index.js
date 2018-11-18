@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux'
 import user from './user'
+import {reducer as tag} from './tag'
 import admin from './admin'
 import {reducer as front} from './front'
 const initialState = {
@@ -81,6 +82,7 @@ export default combineReducers({
     globalState: reducer,
     user,
     admin,
+    tag,
     front,
 })
 

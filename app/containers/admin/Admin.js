@@ -10,6 +10,7 @@ import Menus from './menus'
 import {Layout} from 'antd'
 import Publish from '../publish/publish'
 import Manage from '../manage/Manage'
+import Tag from '../tag'
 const { Content, Footer } = Layout
 export default class Admin extends Component {
 
@@ -21,6 +22,7 @@ export default class Admin extends Component {
                 <div className='content_header'></div>
                 <div className='content_main'>
                     <Route key='manage' path={`${match.path}/manage`} component={Manage}/>
+                    <Route key='tag' path={`${match.path}/tag`} component={Tag}/>
                     <Route key='publish' path={`${match.path}/publish`} component={Publish}/>
                     <Route key='edit/:id' path={`${match.path}/edit/:id`} component={Publish}/>
                 </div>

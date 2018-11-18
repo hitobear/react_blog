@@ -7,6 +7,6 @@ import {responseClient} from '../util'
 
 
 router.use('/blog',require('./blog'));
-
+router.use('/tag',require('./tag'));
 
 module.exports = router;
