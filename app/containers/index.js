@@ -9,13 +9,15 @@ import {
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import RoutFront from './routFront'
+import {notification} from 'antd'
 import {Home} from './home'
 import {Detail} from './detail'
 import {Header,Footer} from '../components'
 import Admin from './admin/admin'
 import Front from './front'
 import './index.less'
-
+import {actions} from '../reducers'
+const {clear_msg, user_auth} = actions;
 class AppIndex extends Component {
 
     constructor(props) {
@@ -40,10 +42,17 @@ class AppIndex extends Component {
         let {isFetching} = this.props;
         return (
             <Router>
+                <div>
                     <Switch>
                         <Route  path='/admin' component={Admin}/>
                         <Route  component={Front}/>
                     </Switch>
+                    {this.props.notification && this.props.notification.content ?
+                        (this.props.notification.type === 1 ?
+                            this.openNotification('success', this.props.notification.content) :
+                            this.openNotification('error', this.props.notification.content)) :
+                        null}
+                </div>
             </Router>
         )
     }
@@ -54,7 +63,6 @@ class AppIndex extends Component {
 
 }
 
-
 function mapStateToProps(state) {
     return {
         notification: state.globalState.msg,
@@ -63,9 +71,17 @@ function mapStateToProps(state) {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        clear_msg: bindActionCreators(clear_msg, dispatch),
+        user_auth: bindActionCreators(user_auth, dispatch)
+    }
+}
+
 
 
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(AppIndex)

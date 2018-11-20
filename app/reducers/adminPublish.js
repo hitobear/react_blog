@@ -3,7 +3,7 @@ const initialState={
     title:'',
     content:'',
     description:'',
-    tags:[{id:1,name:'abc'},{id:2,name:'Javascript'},{id:3,name:'CSS'}],
+    tags:[],
 };
 export const actionTypes = {
     UPDATING_TITLE:"UPDATING_TITLE",
@@ -36,10 +36,11 @@ export const actions = {
     update_data:function (data) {
         return{
             type:actionTypes.UPDATING_DATA,
-            data
+            ...data,
         }
     },
     save_blog:function (data) {
+        console.log('saveblogo%',data)
         return{
             type:actionTypes.SAVE_BLOG,
             data
@@ -49,26 +50,28 @@ export const actions = {
 
 
 export function reducer(state=initialState,action) {
-    switch (action.type){
+    let {type,...data}=action
+    switch (type){
         case actionTypes.UPDATING_TITLE:
             return{
-                ...state,title:action.title
+                ...state,title:data.title
             };
         case actionTypes.UPDATING_DESCRIPTION:
             return{
-                ...state,description:action.description
+                ...state,description:data.description
             };
         case actionTypes.UPDATING_CONTENT:
             return{
-                ...state,content:action.content
+                ...state,content:data.content
             };
         case actionTypes.UPDATING_ID:
             return{
-                ...state,id:action.id
+                ...state,id:data.id
             };
-        case actionTypes.UPDATEING_DATA:
+        case actionTypes.UPDATING_DATA:
+            console.log('updateing data%o',data)
             return {
-                ...state,...action.data
+                ...state,...data
             }
         default:
             return state;

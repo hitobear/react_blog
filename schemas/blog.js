@@ -10,5 +10,6 @@ module.exports = new mongoose.Schema({
     viewCount:Number,//浏览次数
     commentCount:Number,//评论次数
     description:String,//博客描述
-    isPublish:Boolean//是否发布
+    isPublish:Boolean,//是否发布
+    tags:Array,//标签
 });

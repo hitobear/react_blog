@@ -3,7 +3,18 @@ import Tag from '../../models/tag'
 import {responseClient} from '../util'
 
 const router = Express.Router();
-
+//删除标签
+router.get('/del', function (req, res) {
+    console.log('del')
+    console.log(req)
+    let {id} = req.query;
+    Tag.remove({_id:id})
+        .then(result => {
+            responseClient(res,200,0,'删除成功!')
+        }).catch(err => {
+        responseClient(res);
+    });
+});
 router.post('/add', function (req, res) {
     console.log('apidadd tag...')
     const {

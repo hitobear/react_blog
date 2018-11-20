@@ -2,7 +2,7 @@ import {fork} from 'redux-saga/effects'
 import {saveBlogFlow} from './adminPublish'
 import {getBlogListFlow,deleteBlogFlow,editBlogFlow} from './adminBlogs'
 import {getFrontBlogListFlow} from './front'
-import {getTagListFlow,saveTagFlow} from './tag'
+import {getTagListFlow,saveTagFlow,delTagFlow} from './tag'
 export default function* rootSaga() {
     yield fork(saveBlogFlow);
     yield fork(getBlogListFlow);
@@ -11,4 +11,5 @@ export default function* rootSaga() {
     yield fork(getFrontBlogListFlow);
     yield fork(getTagListFlow);
     yield fork(saveTagFlow);
+    yield fork(delTagFlow);
 }

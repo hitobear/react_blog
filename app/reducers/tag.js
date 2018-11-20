@@ -1,10 +1,13 @@
 const initialState = {
     list:[],
     modalVisible:false,
+    currentItem:{},
+    modalType:'create',
 };
 
 export const actionTypes = {
     SAVE_TAG:"SAVE_TAG",
+    DELETE_TAG:"DELETE_TAG",
     GET_TAG_LIST: 'GET_TAG_LIST',
     RESPONSE_GET_TAG_LIST: "RESPONSE_GET_TAG_LIST",
     HIDE_MODAL:"HIDE_MODAL",
@@ -18,6 +21,14 @@ export const actions = {
             data
         }
     },
+    delete_tag:function (data) {
+        console.log('deletetag')
+        console.log(data)
+        return{
+            type:actionTypes.DELETE_TAG,
+            data:data||{},
+        }
+    },
     get_tag_list: function () {
         return {
             type: actionTypes.GET_TAG_LIST
@@ -28,23 +39,25 @@ export const actions = {
             type: actionTypes.HIDE_MODAL
         }
     },
-    show_modal:function(){
+    show_modal:function(data){
         return {
-            type: actionTypes.SHOW_MODAL
+            data:data||{},
+            type: actionTypes.SHOW_MODAL,
         }
     }
 };
 
 export function reducer(state = initialState, action) {
-    console.log('action response get tag list')
     switch (action.type) {
         case actionTypes.HIDE_MODAL:
             return {
                 ...state,modalVisible:false,
             }
-        case actionTypes.SHOW_MODAL:
+        case actionTypes.SHOW_MODAL: 
+            console.log('showmodal..reducer')
+            console.log(action)
             return {
-                ...state,modalVisible:true,
+                ...state,modalVisible:true,modalType:action.data.modalType,currentItem:action.data.item
             }
         case actionTypes.RESPONSE_GET_TAG_LIST:
             console.log('in case')

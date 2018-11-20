@@ -55,14 +55,13 @@ export function* editBlogFlow () {
         let res = yield call(editBlog,req.id);
         if(res){
             if (res.code === 0) {
-                let title = res.data.title;
-                let content = res.data.content;
-                let description = res.data.description;
-                let id = res.data._id;
-                yield put({type:PublishTypes.UPDATING_ID,id});
+                let {title,content,description,_id,...rest} = res.data;
+                console.log('res.data...%o',res.data)
+                yield put({type:PublishTypes.UPDATING_ID,id:_id});
                 yield put({type:PublishTypes.UPDATING_DESCRIPTION,description});
                 yield put({type:PublishTypes.UPDATING_CONTENT,content});
                 yield put({type:PublishTypes.UPDATING_TITLE,title});
+                yield put({type:PublishTypes.UPDATING_DATA,...rest});
             } else {
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
             }

@@ -9,6 +9,7 @@ router.post('/addBlog', function (req, res) {
         title,
         content,
         description,
+        tags,
     } = req.body;
     const coverImg =  `/${Math.round(Math.random() * 9 + 1)}.jpg`;
     const viewCount = 0;
@@ -16,6 +17,7 @@ router.post('/addBlog', function (req, res) {
     let tempBlog = new Blog({
         title,
         content,
+        tags:tags.split(','),
         description,
         viewCount,
         commentCount
@@ -23,7 +25,6 @@ router.post('/addBlog', function (req, res) {
     tempBlog.save().then(data=>{
         responseClient(res,200,0,'保存成功',data)
     }).cancel(err=>{
-        console.log(err);
         responseClient(res);
     });
 });
@@ -33,9 +34,10 @@ router.post('/updateBlog',(req,res)=>{
         title,
         content,
         description,
+        tags,
         id
     } = req.body;
-    Blog.update({_id:id},{title,content,description})
+    Blog.update({_id:id},{title,content,description,tags:tags.split(',')})
         .then(result=>{
             console.log(result);
             responseClient(res,200,0,'更新成功',result)

@@ -31,9 +31,6 @@ export function* saveTagFlow() {
             if (res) {
                 if (res.code === 0) {
                     yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 1});
-                    setTimeout(function () {
-                        location.replace('/admin/tag');
-                    }, 1000);
                 } else if (res.message === '身份信息已过期，请重新登录') {
                     yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
                     setTimeout(function () {
@@ -75,6 +72,40 @@ export function* getTagListFlow () {
             } else {
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
             }
+        }
+    }
+}
+
+export function* delTag(id) {
+    yield put({type: IndexActionTypes.FETCH_START});
+    console.log('resss..')
+        console.log(id)
+    try {
+        return yield call(get, `/admin/tag/del?id=${id}`);
+    } catch (err) {
+        yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0});
+    } finally {
+        yield put({type: IndexActionTypes.FETCH_END})
+    }
+}
+
+export function* delTagFlow() {
+    while (true){
+        console.log(`recceive${TagActionTypes.DELETE_TAG}`)
+        let req = yield take(TagActionTypes.DELETE_TAG);
+        console.log('res..')
+        console.log(req)
+        let res = yield call(delTag,req.data.id);
+        if (res.code === 0) {
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 1});
+            yield put({type:TagActionTypes.GET_TAG_LIST});
+        } else if (res.message === '身份信息已过期，请重新登录') {
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
+            setTimeout(function () {
+                location.replace('/');
+            }, 1000);
+        } else {
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
         }
     }
 }
