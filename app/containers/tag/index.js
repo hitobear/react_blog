@@ -10,22 +10,17 @@ const {save_tag,delete_tag,get_tag_list,hide_modal,show_modal} = actions;
 class Tag extends Component {
 
     componentDidMount(){
-        console.log('compodidmount...')
         this.props.get_tag_list();
     }
     
     render(){
         const {save_tag,delete_tag,modalVisible,hide_modal,show_modal,modalType,currentItem} = this.props;
-        console.log(`this.props`)
-        console.log(this.props)
-        console.log(modalType==='create')
         const modalProps={
             visible:modalVisible,
             mask:true,
             maskClosable:false,
             title:`${modalType==='create'?'新建标签':'更新标签'}`,
             onOk(data){
-                console.log('onok.....')
                 save_tag(data)
             },
             onCancel:hide_modal,
@@ -57,8 +52,6 @@ class Tag extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('sssss====state')
-    console.log(state)
     const {list,modalVisible,modalType,currentItem} = state.tag;
     return {
         list,

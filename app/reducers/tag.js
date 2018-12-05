@@ -22,8 +22,6 @@ export const actions = {
         }
     },
     delete_tag:function (data) {
-        console.log('deletetag')
-        console.log(data)
         return{
             type:actionTypes.DELETE_TAG,
             data:data||{},
@@ -54,14 +52,10 @@ export function reducer(state = initialState, action) {
                 ...state,modalVisible:false,
             }
         case actionTypes.SHOW_MODAL: 
-            console.log('showmodal..reducer')
-            console.log(action)
             return {
                 ...state,modalVisible:true,modalType:action.data.modalType,currentItem:action.data.item
             }
         case actionTypes.RESPONSE_GET_TAG_LIST:
-            console.log('in case')
-            console.log(action)
             return {
                 ...state, list: [...action.data.list]
             };

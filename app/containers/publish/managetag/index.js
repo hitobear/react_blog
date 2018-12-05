@@ -7,8 +7,6 @@ export default class ManageTag extends Component {
 
     render(){
         const tagList = this.props.tagList;
-        console.log(`this.props.tags`)
-        console.log(this.props.tag)
         return  (<Select
         mode="tags"
         showSearch={true}

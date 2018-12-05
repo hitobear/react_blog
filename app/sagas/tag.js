@@ -10,7 +10,6 @@ export function* saveTag(data) {
             data.id = id;
             return yield call(post, '/admin/tag/update', data);
         }else{
-            console.log('adddd..')
             return yield call(post, '/admin/tag/add', data);
         }
 
@@ -59,8 +58,6 @@ export function* getTagListFlow () {
     while (true){
         let req = yield take(TagActionTypes.GET_TAG_LIST);
         let res = yield call(getTagList);
-        console.log('getlistflow..')
-        console.log(res)
         if(res){
             if (res.code === 0) {
                 yield put({type:TagActionTypes.RESPONSE_GET_TAG_LIST,data:res.data})
@@ -78,8 +75,6 @@ export function* getTagListFlow () {
 
 export function* delTag(id) {
     yield put({type: IndexActionTypes.FETCH_START});
-    console.log('resss..')
-        console.log(id)
     try {
         return yield call(get, `/admin/tag/del?id=${id}`);
     } catch (err) {
@@ -91,10 +86,7 @@ export function* delTag(id) {
 
 export function* delTagFlow() {
     while (true){
-        console.log(`recceive${TagActionTypes.DELETE_TAG}`)
         let req = yield take(TagActionTypes.DELETE_TAG);
-        console.log('res..')
-        console.log(req)
         let res = yield call(delTag,req.data.id);
         if (res.code === 0) {
             yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 1});

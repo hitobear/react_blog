@@ -17,7 +17,6 @@ export default class MenuItem extends Component{
         this.props.onClick(this.props.to);
     }
     render(){
-        console.log(`selected:${this.props.selected}key:${this.props.to}`)
         const {prefixCls,className,children,selected,key}=this.props;
         const classes=classNames(prefixCls,className,
             {[`${prefixCls}-active`]:!!selected},

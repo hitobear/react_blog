@@ -13,7 +13,6 @@ class RoutFront extends Component{
         super(props);
     }
     componentWillMount(){
-        console.log('willmountfont')
     }
     render(){
         const {url} = this.props.match;

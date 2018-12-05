@@ -40,7 +40,6 @@ export const actions = {
         }
     },
     save_blog:function (data) {
-        console.log('saveblogo%',data)
         return{
             type:actionTypes.SAVE_BLOG,
             data
@@ -69,7 +68,6 @@ export function reducer(state=initialState,action) {
                 ...state,id:data.id
             };
         case actionTypes.UPDATING_DATA:
-            console.log('updateing data%o',data)
             return {
                 ...state,...data
             }

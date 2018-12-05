@@ -5,8 +5,6 @@ import {responseClient} from '../util'
 const router = Express.Router();
 //删除标签
 router.get('/del', function (req, res) {
-    console.log('del')
-    console.log(req)
     let {id} = req.query;
     Tag.remove({_id:id})
         .then(result => {
@@ -16,7 +14,6 @@ router.get('/del', function (req, res) {
     });
 });
 router.post('/add', function (req, res) {
-    console.log('apidadd tag...')
     const {
         name,
         shortName
@@ -28,7 +25,6 @@ router.post('/add', function (req, res) {
     tag.save().then(data=>{
         responseClient(res,200,0,'保存成功',data)
     }).cancel(err=>{
-        console.log(err);
         responseClient(res);
     });
 });
@@ -41,10 +37,8 @@ router.post('/update',(req,res)=>{
     } = req.body;
     Tag.update({_id:id},{name,shortName})
         .then(result=>{
-            console.log(result);
             responseClient(res,200,0,'更新成功',result)
         }).cancel(err=>{
-        console.log(err);
         responseClient(res);
     });
 });

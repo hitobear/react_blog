@@ -7,7 +7,6 @@ export function* saveBlog(data) {
     yield put({type: IndexActionTypes.FETCH_START});
     try {
         let id = yield select(state=>state.admin.publish.id);
-        console.log('idaaa,',id);
         if(id){
             data.id = id;
             return yield call(post, '/admin/blog/updateBlog', data);
@@ -32,7 +31,6 @@ export function* saveBlogFlow() {
         } else if (request.data.description === "") {
             yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入文章描述', msgType: 0});
         }
-        console.log('requestdata%o',request.data)
         if (request.data.title && request.data.content) {
             let res = yield call(saveBlog, request.data);
             if (res) {

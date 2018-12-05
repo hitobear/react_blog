@@ -9,8 +9,6 @@ export  class ArticleItem extends Component{
     
     render(){
         const{tags,id}=this.props.data
-        console.log('tags')
-        console.log(tags)
         return (<div to='/detail/456' className='list_item list_item_extra_wrap post_item link'>
         <div className='item_main'>
                     <p className='item_content'  onClick={()=>this.props.history.push(`/detail/123}`)}>

@@ -39,10 +39,8 @@ router.post('/updateBlog',(req,res)=>{
     } = req.body;
     Blog.update({_id:id},{title,content,description,tags:tags.split(',')})
         .then(result=>{
-            console.log(result);
             responseClient(res,200,0,'更新成功',result)
         }).cancel(err=>{
-        console.log(err);
         responseClient(res);
     });
 });

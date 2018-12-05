@@ -21,7 +21,6 @@ const modal = ({
     ...modalProps
 })=>{
     const onCancel=()=>{
-        console.log('cancel...')
     }
     const handleOk = () => {
         validateFields((errors) => {
@@ -32,8 +31,6 @@ const modal = ({
             ...getFieldsValue(),
             id: item.key,
           }
-          console.log(data)
-          console.log('handleok.....')
           onOk(data)
         })
     }

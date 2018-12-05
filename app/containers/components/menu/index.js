@@ -17,7 +17,6 @@ export default class Menu extends Component {
 
     static Item =MenuItem;
     handleClick = (key) => {
-        console.log('click ', key);
         let toPath = key;
         this.setState({
             current: key,
@@ -27,9 +26,6 @@ export default class Menu extends Component {
 
 
     render(){
-        console.log(`homehistory`)
-        console.log(this.props.history)
-        console.log(this.state.current)
         const {prefixCls,className}=this.props;
         const classes=classNames(prefixCls,className)
         return  <ul className={classes}>

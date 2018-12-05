@@ -56,7 +56,6 @@ export function* editBlogFlow () {
         if(res){
             if (res.code === 0) {
                 let {title,content,description,_id,...rest} = res.data;
-                console.log('res.data...%o',res.data)
                 yield put({type:PublishTypes.UPDATING_ID,id:_id});
                 yield put({type:PublishTypes.UPDATING_DESCRIPTION,description});
                 yield put({type:PublishTypes.UPDATING_CONTENT,content});

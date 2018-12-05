@@ -12,7 +12,6 @@ const {get_front_blog_list} = frontActions;
 import './index.less'
 class Home extends Component {
     render(){
-        console.log('...renderhome')
         const {avatar,author,title,viewCount,commentCount,time} ={
             avatar:'http://blog-server.hunger-valley.com/avatar/48.jpg',
             title:'测试文章',

@@ -65,7 +65,6 @@ class Publish extends Component {
     }
     //发表
     handlePublish=()=> {
-        console.log(`handlepublish`)
         let data = {};
         data.title = this.props.title;
         data.description=this.props.description;
