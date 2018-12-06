@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {Input,Button,Row,Col} from 'antd'
 import ManageHeader from './manageheader'
 import ManageTag from './managetag'
+import BlogHeader from '../../components/blog/blog-header/blog-header'
 import './index.less'
 const { TextArea } = Input
 
@@ -79,6 +80,7 @@ class Publish extends Component {
         return (<div className='publish_article'>
             <Row>
                 <Col span={18}>
+                    <BlogHeader></BlogHeader>
                     {this.getArticle()}
                 </Col>
                 <Col span={6}>
