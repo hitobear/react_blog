@@ -1,0 +1,38 @@
+.md_panel{
+    display: block;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    overflow: hidden;
+
+    .md_editor{
+        width: 50%;
+        height: 100%;
+        transition: width 0.3s;
+        background-color: #fff;
+        textarea{
+            display: block;
+            border-style: none;
+            outline: 0;
+            height: 100%;
+            width: 100%;
+            padding: 47px 15px 15px;
+        } 
+    }
+    .md_preview{
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        background-color: #f6f6f6;
+        padding: 45px 20px 20px;
+        border-left: 1px solid #ccc;
+        overflow: auto;
+        transition: left 0.3s, width 0.3s;
+    }
+    .md_editor textarea, .md_preview {
+        line-height: 1.5;
+    }
+}

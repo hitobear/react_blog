@@ -9,9 +9,6 @@ class BlogHeaderForm extends React.Component {
     render(){
         const { getFieldDecorator } = this.props.form;
         const {taglist,tags,handleTagChange} =this.props;
-        console.log('taglisto%',this.props)
-        console.log('tagso%',tags)
-        console.log(tags)
         const formItemLayout = {
             wrapperCol: {
               xs: { span: 24 },

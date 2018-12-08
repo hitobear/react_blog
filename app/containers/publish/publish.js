@@ -76,14 +76,17 @@ class Publish extends Component {
 
     render(){
       //  let tags=[{id:1,name:'abc'},{id:2,name:'Javascript'},{id:3,name:'CSS'}]
-      let {taglist,tags,title} =this.props
+      let {taglist,tags,title,content} =this.props
       const handleTagChange=(values) => this.handleTagChange(values)
       const headerProps={title,taglist,tags,handleTagChange,publish:this.publish}
+      const editorProps={content,onChange:this.contentOnChange}
         return (<div className='publish_article'>
             <Row>
                     <h3>发布文章</h3>
                     <BlogHeader {...headerProps}></BlogHeader>
-                    <MarkDownEditor />
+                    <div className="article_editor">
+                    <MarkDownEditor {...editorProps}/>
+                    </div>
                     {this.getArticle()}
             </Row>
         </div>)
