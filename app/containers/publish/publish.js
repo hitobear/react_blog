@@ -5,9 +5,8 @@ import {actions as blogactions} from "../../reducers/adminBlogs";
 import {actions as tagActions} from "../../reducers/tag";
 import {connect} from 'react-redux'
 import {Input,Button,Row,Col} from 'antd'
-import ManageHeader from './manageheader'
-import ManageTag from './managetag'
 import BlogHeader from '../../components/blog/blog-header/blog-header'
+import MarkDownEditor from '../../components/blog/editor'
 import './index.less'
 const { TextArea } = Input
 
@@ -40,7 +39,7 @@ class Publish extends Component {
     }
     getArticle=()=>{
         return (<div className='publish_container'>
-        <h2 className='publish_description'>发布文章a</h2>
+        
         <Input  className='publish_input'
                     placeholder={'请输入文章标题'}
                     onChange={this.titleOnChange}
@@ -65,7 +64,7 @@ class Publish extends Component {
         </div>)
     }
     //发表
-    handlePublish=()=> {
+    publish=()=> {
         let data = {};
         data.title = this.props.title;
         data.description=this.props.description;
@@ -73,25 +72,19 @@ class Publish extends Component {
         data.tags=this.props.tags;
         this.props.save_blog(data);
     };
+    
 
     render(){
       //  let tags=[{id:1,name:'abc'},{id:2,name:'Javascript'},{id:3,name:'CSS'}]
-      let {taglist,tags} =this.props
+      let {taglist,tags,title} =this.props
+      const handleTagChange=(values) => this.handleTagChange(values)
+      const headerProps={title,taglist,tags,handleTagChange,publish:this.publish}
         return (<div className='publish_article'>
             <Row>
-                <Col span={18}>
-                    <BlogHeader></BlogHeader>
+                    <h3>发布文章</h3>
+                    <BlogHeader {...headerProps}></BlogHeader>
+                    <MarkDownEditor />
                     {this.getArticle()}
-                </Col>
-                <Col span={6}>
-                    <section className='infoitem'>
-                        <ManageHeader publish={()=>{this.handlePublish()}}/>
-                    </section>
-                    <section className='infoitem'>
-                        <h5>标签</h5>
-                        <ManageTag tag={tags} tagList={taglist} handleTagChange={(values) => this.handleTagChange(values)}/>
-                    </section>
-                </Col>
             </Row>
         </div>)
     }
