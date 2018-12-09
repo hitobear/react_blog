@@ -20,6 +20,105 @@
             padding: 47px 15px 15px;
         } 
     }
+    .md_menubar{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        box-shadow: 0 0 1px #ccc;
+        z-index: 10;
+        background-color: #fff;
+        .md_toolbar{
+            margin:0;
+            padding:0;
+            li{
+                float: left;
+                margin: 0 ;
+                vertical-align: text-top;
+            }
+            .spliter{
+                margin: 5px 4px;
+                width: 0;
+                height: 20px;
+                padding-left: 0;
+                padding-right: 0;
+                border-right: 1px solid #ddd;
+                text-indent: 110%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-transform: capitalize;
+            }
+            .editor_toolbar{
+                &.bold {
+                    background-position: -1px 0;
+                }
+                &.italic {
+                    background-position: -21px 0
+                }
+                &.link {
+                    background-position: -40px 0
+                }
+                &.quote {
+                    background-position: -60px 0
+                }
+                &.code {
+                    background-position: -80px 0
+                }
+                &.img {
+                    background-position: -100px 0
+                }
+                &.ol {
+                    background-position: -120px 0
+                }
+                &.ul {
+                    background-position: -140px 0
+                }
+                &.title {
+                    background-position: -160px 0
+                }
+                &.hr {
+                    background-position: -180px 0
+                }
+                &.two {
+                    background-position: -280px 0
+                }
+                &.undo {
+                    background-position: -200px 0
+                }
+                &.redo {
+                    background-position: -220px 0
+                }
+                &:hover {
+                    border-color: #f6f6f6;
+                    background-color: #f6f6f6;
+                    background-position-y: -40px;
+                    text-decoration: none;
+                }
+                &.active {
+                    background-position-y: -20px;
+                    background-color: #f6f6f6;
+                    border-color: #f6f6f6;
+                    cursor: default;
+                }
+            }
+            a{
+                cursor: pointer;
+                display: block;
+                border: 5px solid #fff;
+                width: 18px;
+                height: 18px;
+                background-repeat: no-repeat;
+                background-size: 380px 60px;
+                background-image: url(/editor@2x.png);
+                text-indent: 110%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-transform: capitalize;
+                box-sizing: content-box;
+            }
+        }
+    }
     .md_preview{
         position: absolute;
         width: 50%;
@@ -34,5 +133,19 @@
     }
     .md_editor textarea, .md_preview {
         line-height: 1.5;
+    }
+    .markdown blockquote {
+        margin: 0;
+        padding: 5px 10px 5px 15px;
+        border-left: 5px solid #4682b4;
+        background-color: #eee;
+    }
+    blockquote ol:last-child, blockquote p:last-child, blockquote ul:last-child {
+        margin-bottom: 0;
+    }
+    .markdown h1, .markdown h2 {
+        margin-top: 20px;
+        padding-bottom: 8px;
+        border-bottom: 1px dotted #ccc;
     }
 }

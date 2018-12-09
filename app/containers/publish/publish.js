@@ -34,8 +34,8 @@ class Publish extends Component {
     descOnChange=(e)=>{
         this.props.update_description(e.target.value)
     }
-    contentOnChange=(e)=>{
-        this.props.update_content(e.target.value)
+    contentOnChange=(value)=>{
+        this.props.update_content(value)
     }
     getArticle=()=>{
         return (<div className='publish_container'>
