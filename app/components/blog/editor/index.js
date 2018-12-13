@@ -1,8 +1,9 @@
 import marked from 'marked';
 import classnames from 'classnames';
 import * as React from 'react';
+import {message} from 'antd'
 import './index.less'
-
+import EditorImageModal from './image-modal'
 
 class MarkDownEditor extends React.Component{
     static defaultProps = {
@@ -13,9 +14,50 @@ class MarkDownEditor extends React.Component{
     initialState () {
         return {
           result: this.toHtml(this.props.content),
+          imageTabKey:'0',
+          imageUrl:'',
+          fileLink:'',
+          imageModalVisible:false,
         }
     }
-
+    handleImageOk() {
+        if (!this.state.imageUrl && !this.state.fileLink) {
+          message.warning('请插入图片');
+          return;
+        }
+        const start = (this._cleanSelect());
+        if (this.state.imageTabKey === '0') {
+          const fileName = this.fileInfo.file.name;
+          this._preInputText(`![${fileName}](${location.origin + this.imagePath})`, 2, fileName.length + 2, start);
+          this.imageModalClose();
+        } else {
+          if (this.state.imageUrl) {
+            this.writeImageUrl();
+            this.imageModalClose();
+          }
+        }
+        
+    }
+    imageModalClose() {
+        this.setState({imageModalVisible:false});
+        this.setState({imageUrl:''});
+      }
+    writeImageUrl(){
+        const start = this._cleanSelect();
+        this._preInputText(`![](${this.state.imageUrl})`, 0, 0, start);
+    }
+    handleImageUrlChange(url) {
+        this.setState({imageUrl: url});
+    }
+    _cleanSelect() {
+        const start = (this.textControl).selectionStart;
+        let text = this.props.content;
+    
+        this.setState({ result: marked(text) });
+        this.props.onChange(text);
+    
+        return start;
+      }
     toHtml(text) {
         let result=marked(text, {sanitize: true})
         return marked(text, {sanitize: true});
@@ -25,8 +67,6 @@ class MarkDownEditor extends React.Component{
         this.setState({result: marked(nextProps.content)});
     }
     componentDidMount(){
-        console.log('this.preview')
-        console.log(this.preview)
         this.previewControl = this.preview;
         this._syncScroll = (() => {
           let leftSync = false, rightSync = false;
@@ -64,7 +104,7 @@ class MarkDownEditor extends React.Component{
         <li className="tb-btn"><a title="链接(Ctrl + L)" onClick={() => this._linkModal()} className="editor_toolbar link"/></li>{/* link */}
         <li className="tb-btn"><a title="引用(Ctrl + Q)" onClick={() => this._blockquoteText()} className="editor_toolbar quote"/></li>{/* blockquote */}
         <li className="tb-btn"><a title="代码段(Ctrl + K)" onClick={() => this._codeText()} className="editor_toolbar code"/></li>{/* code */}
-        <li className="tb-btn"><a title="图片(Ctrl + G)" onClick={() => this._pictureText()} className="editor_toolbar img"/></li>{/* picture-o */}
+        <li className="tb-btn"><a title="图片(Ctrl + G)" onClick={() => this._imageText()} className="editor_toolbar img"/></li>{/* picture-o */}
         <li className="tb-btn spliter"/>
         <li className="tb-btn"><a title="有序列表(Ctrl + O)" onClick={() => this._listOlText()} className="editor_toolbar ol"/></li>{/* list-ol */}
         <li className="tb-btn"><a title="无序列表(Ctrl + U)" onClick={() => this._listUlText()} className="editor_toolbar ul"/></li>{/* list-ul */}
@@ -92,8 +132,6 @@ class MarkDownEditor extends React.Component{
         // pre-select
         setTimeout(() => this.textControl.setSelectionRange(start + preStart, start + preEnd), 20);
         this.setState({ result: marked(content) }); // change state
-        console.log('content')
-        console.log(marked(content))
         this.props.onChange(content);
     }
     
@@ -102,6 +140,9 @@ class MarkDownEditor extends React.Component{
     }
     _italicText () {
         this._preInputText('*斜体文字*', 1, 5);
+    }
+    _imageText () {
+        this.setState({imageModalVisible:true});
     }
     _onChange (e) {
         let content = e.target.value;
@@ -124,6 +165,15 @@ class MarkDownEditor extends React.Component{
                 <div className="md_preview markdown"  ref={div => this.preview = div} dangerouslySetInnerHTML={{ __html: this.state.result }}>
                 </div>
             </div>
+            <EditorImageModal
+            tabChanged={key => this.setState({imageTabKey: key})}
+            tabKey={this.state.imageTabKey}
+            imageUrl={this.state.imageUrl}
+            visible={this.state.imageModalVisible}
+            onOk={() => this.handleImageOk()}
+            onCancel={() => this.imageModalClose()}
+            imageUrlChange={(imageUrl)=>this.handleImageUrlChange(imageUrl)}
+            ></EditorImageModal>
         </div>)
     }
 }

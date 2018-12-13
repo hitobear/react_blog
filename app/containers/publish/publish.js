@@ -37,32 +37,6 @@ class Publish extends Component {
     contentOnChange=(value)=>{
         this.props.update_content(value)
     }
-    getArticle=()=>{
-        return (<div className='publish_container'>
-        
-        <Input  className='publish_input'
-                    placeholder={'请输入文章标题'}
-                    onChange={this.titleOnChange}
-                    value={this.props.title}
-                    type='text'/>
-        <TextArea 
-            className='publish_input'
-            rows={6} 
-            autosize={{ minRows: 5}}
-            placeholder="文章摘要" 
-            onChange={this.descOnChange}
-            value={this.props.description}
-          />
-         <TextArea 
-            className='publish_input'
-            rows={6} 
-            autosize={{ minRows: 15}}
-            placeholder="文章内容 markdown格式"
-            onChange={this.contentOnChange}
-            value={this.props.content}
-          />
-        </div>)
-    }
     //发表
     publish=()=> {
         let data = {};
@@ -87,7 +61,6 @@ class Publish extends Component {
                     <div className="article_editor">
                     <MarkDownEditor {...editorProps}/>
                     </div>
-                    {this.getArticle()}
             </Row>
         </div>)
     }
