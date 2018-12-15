@@ -11,13 +11,30 @@ import {Layout} from 'antd'
 import Publish from '../publish/publish'
 import Manage from '../manage/Manage'
 import Tag from '../tag'
+import config from '../../../config/config'
+import Sider from './sider'
+const {prefix} = config
+
 const { Content, Footer } = Layout
 export default class Admin extends Component {
+    state={
+        navOpenKeys: JSON.parse(localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+    }
 
+    changeOpenKeys=(openKeys)=> {
+        this.setState(navOpenKeys:openKeys)
+    }
+    
     render(){
+        const siderProps={
+            menu,
+            location:this.props.history.location,
+            navOpenKeys:this.state.navOpenKeys,
+            changeOpenKeys:this.changeOpenKeys,
+        }
         const { match } = this.props;
         return (<div className='admin_layout'>
-            <aside className='admin_sider'><Menus menu={menu} location={this.props.history.location}></Menus></aside>
+            <aside className='admin_sider'><Sider {...siderProps}></Sider></aside>
             <div className='content_container'>
                 <div className='content_header'></div>
                 <div className='content_main'>

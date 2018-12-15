@@ -1,4 +1,5 @@
 module.exports = {
+    prefix:'ltblog',
     host:process.env.HOST || '127.0.0.1',
     port:process.env.PORT ||(process.env.NODE_ENV === 'production'?8080:5000),
     apiHost:process.env.APIHOST || '127.0.0.1',
