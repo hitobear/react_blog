@@ -14,6 +14,19 @@ const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu 
       break
     }
   }
+
+  const onOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => !(navOpenKeys.indexOf(key) > -1))
+    const latestCloseKey = navOpenKeys.find(key => !(openKeys.indexOf(key) > -1))
+    let nextOpenKeys = []
+    if (latestOpenKey) {
+      nextOpenKeys = getAncestorKeys(latestOpenKey).concat(latestOpenKey)
+    }
+    if (latestCloseKey) {
+      nextOpenKeys = getAncestorKeys(latestCloseKey)
+    }
+    changeOpenKeys(nextOpenKeys)
+  }
     const renderMenuItem =
         ({ router, name, icon, link, ...props }) =>
             <Menu.Item

@@ -22,7 +22,7 @@ export default class Admin extends Component {
     }
 
     changeOpenKeys=(openKeys)=> {
-        this.setState(navOpenKeys:openKeys)
+        this.setState({navOpenKeys:openKeys})
     }
     
     render(){
