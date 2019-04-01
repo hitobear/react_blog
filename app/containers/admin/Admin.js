@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import './index.less'
 import { routes } from '../../constants/routes'
-import { menu } from '../../utils'
+import menu from '../../utils/menu'
 import Menus from './menus'
 import {Layout} from 'antd'
 import Publish from '../publish/publish'

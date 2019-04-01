@@ -1,8 +1,13 @@
-import React from 'react'
+import React,{Fragment} from 'react'
 import {Menu,Icon,Layout} from 'antd';
 import { Link } from 'react-router-dom'
 import './index.less'
+import {
+    arrayToTree
+  } from '../../../utils'
 import pathToRegexp from 'path-to-regexp'
+
+const { SubMenu } = Menu
 
 const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu }) => {
 
@@ -45,9 +50,39 @@ const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu 
            return renderMenuItem(item)
         })
     }
+    const generateMenus = data => {
+        return data.map(item => {
+          if (item.children) {
+            return (
+              <SubMenu
+                key={item.id}
+                title={
+                  <Fragment>
+                    {item.icon && <Icon type={item.icon} />}
+                    <span>{item.name}</span>
+                  </Fragment>
+                }
+              >
+                {generateMenus(item.children)}
+              </SubMenu>
+            )
+          }
+          return (
+            <Menu.Item key={item.id}>
+              <Link to={item.router}>
+                {item.icon && <Icon type={item.icon} />}
+                <span>{item.name}</span>
+              </Link>
+            </Menu.Item>
+          )
+        })
+    }
+    const menuTree = arrayToTree(menu, 'id', 'menuParentId')
 
     return (
-        <Menu theme="dark" className='sidermenu' defaultSelectedKeys={defaultSelectedKeys}>{menu&&getMenus(menu)}</Menu>
+        <Menu
+        mode="inline" 
+        className='sidermenu' defaultSelectedKeys={defaultSelectedKeys}>{menu&&generateMenus(menuTree)}</Menu>
     )
 
 }
