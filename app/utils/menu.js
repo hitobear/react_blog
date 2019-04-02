@@ -7,20 +7,20 @@ module.exports =[{
   {
     id:2,
     router: '/admin/publish',
-    name: '发布',
+    name: '文章管理',
     icon: 'edit'
   },
   {
     id:21,
-    router: '/admin/publish',
-    name: '发布1',
+    router: '/admin/manage',
+    name: '文章列表',
     icon: 'edit',
     menuParentId:2,
   },
   {
     id:22,
-    router: '/admin/manage',
-    name: '发布2',
+    router: '/admin/publish',
+    name: '发布文章',
     icon: 'edit',
     menuParentId:2,
   }
