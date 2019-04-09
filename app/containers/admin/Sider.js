@@ -1,18 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Switch } from 'antd'
+import { Icon, Switch, Layout } from 'antd'
 import Menus from './menus'
 
 const Sider = ({location, changeTheme, navOpenKeys, changeOpenKeys, menu }) => {
   const menusProps = {
     menu,
     location,
-    navOpenKeys,
+    navOpenKeys:['1','2'],
     changeOpenKeys,
   }
   return (
     <div>
-      <Menus {...menusProps} />
+      <Layout.Sider collapsible collapsed={false} theme='light'>
+        <Menus {...menusProps} />
+      </Layout.Sider>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React,{Fragment} from 'react'
+import React,{Fragment,Component} from 'react'
 import {Menu,Icon,Layout} from 'antd';
 import { Link } from 'react-router-dom'
 import './index.less'
@@ -9,33 +9,39 @@ import pathToRegexp from 'path-to-regexp'
 
 const { SubMenu } = Menu
 
-const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu }) => {
 
-  // 寻找选中路由
-  let defaultSelectedKeys
-  for (let item of menu) {
-    if (item.router && pathToRegexp(item.router).exec(location.pathname)) {
-        defaultSelectedKeys = item.router
-      break
-    }
+class Menus extends Component{
+  state = {
+    openKeys: store.get('openKeys') || [],
   }
 
-  const onOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => !(navOpenKeys.indexOf(key) > -1))
-    const latestCloseKey = navOpenKeys.find(key => !(openKeys.indexOf(key) > -1))
-    let nextOpenKeys = []
-    if (latestOpenKey) {
-      nextOpenKeys = getAncestorKeys(latestOpenKey).concat(latestOpenKey)
+   onOpenChange = (openKeys) => {
+    const { navOpenKeys,menu }=this.props
+    console.log('change..')
+    console.log(openKeys)
+
+    const rootSubmenuKeys = menu.filter(_ => !_.menuParentId).map(_ => _.id)
+
+    const latestOpenKey = openKeys.find(
+      key => navOpenKeys.indexOf(key) === -1
+    )
+
+    let newOpenKeys = openKeys
+    console.log('latst')
+    console.log(latestOpenKey)
+    if (rootSubmenuKeys.indexOf(latestOpenKey) !== -1) {
+      console.log('latest in,,')
+      newOpenKeys = latestOpenKey ? [latestOpenKey] : []
     }
-    if (latestCloseKey) {
-      nextOpenKeys = getAncestorKeys(latestCloseKey)
-    }
+    console.log('new')
+    console.log(newOpenKeys)
+
     changeOpenKeys(nextOpenKeys)
   }
-    const renderMenuItem =
-        ({ router, name, icon, link, ...props }) =>
+   renderMenuItem =
+        ({id, router, name, icon, link, ...props }) =>
             <Menu.Item
-                key={router}
+                key={id}
                 className='sidermenu_item'              
                 {...props}
                
@@ -45,12 +51,12 @@ const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu 
                     <span className="nav_text">{name}</span>
                 </Link>
             </Menu.Item>
-    const getMenus = (menu)=>{
+   getMenus = (menu)=>{
         return  menu.map(item =>{
-           return renderMenuItem(item)
+           return this.renderMenuItem(item)
         })
     }
-    const generateMenus = data => {
+    generateMenus = data => {
         return data.map(item => {
           if (item.children) {
             return (
@@ -63,7 +69,7 @@ const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu 
                   </Fragment>
                 }
               >
-                {generateMenus(item.children)}
+                {this.generateMenus(item.children)}
               </SubMenu>
             )
           }
@@ -77,13 +83,32 @@ const Menus = ({ handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu 
           )
         })
     }
-    const menuTree = arrayToTree(menu, 'id', 'menuParentId')
 
+  render(){
+  const { handleClickNavMenu, navOpenKeys, changeOpenKeys,location, menu }=this.props
+      // 寻找选中路由
+  let defaultSelectedKeys
+  for (let item of menu) {
+    if (item.router && pathToRegexp(item.router).exec(location.pathname)) {
+        defaultSelectedKeys = item.router
+      break
+    }
+  }
+    const menuTree = arrayToTree(menu, 'id', 'menuParentId')
+    const menus=this.generateMenus(menuTree)
+    console.log(menus)
+    console.log('navopen')
+    console.log(navOpenKeys)
     return (
         <Menu
+        selectedKeys={['21']}
+        openKeys={navOpenKeys}
         mode="inline" 
-        className='sidermenu' defaultSelectedKeys={defaultSelectedKeys}>{menu&&generateMenus(menuTree)}</Menu>
+        onOpenChange={this.onOpenChange}
+        className='sidermenu' >{menus}</Menu>
     )
+    }
+    
 
 }
 

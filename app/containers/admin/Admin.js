@@ -34,7 +34,7 @@ export default class Admin extends Component {
         }
         const { match } = this.props;
         return (<div className='admin_layout'>
-            <aside className='admin_sider'><Sider {...siderProps}></Sider></aside>
+            <Sider {...siderProps}></Sider>
             <div className='content_container'>
                 <div className='content_header'></div>
                 <div className='content_main'>
