@@ -1,6 +1,7 @@
 import React,{Fragment,Component} from 'react'
 import {Menu,Icon,Layout} from 'antd';
 import { Link } from 'react-router-dom'
+import store from 'store'
 import './index.less'
 import {
     arrayToTree
@@ -16,27 +17,21 @@ class Menus extends Component{
   }
 
    onOpenChange = (openKeys) => {
-    const { navOpenKeys,menu }=this.props
-    console.log('change..')
-    console.log(openKeys)
-
+    const { menu }=this.props
     const rootSubmenuKeys = menu.filter(_ => !_.menuParentId).map(_ => _.id)
 
     const latestOpenKey = openKeys.find(
-      key => navOpenKeys.indexOf(key) === -1
+      key => this.state.openKeys.indexOf(key) === -1
     )
 
     let newOpenKeys = openKeys
-    console.log('latst')
-    console.log(latestOpenKey)
     if (rootSubmenuKeys.indexOf(latestOpenKey) !== -1) {
-      console.log('latest in,,')
       newOpenKeys = latestOpenKey ? [latestOpenKey] : []
     }
-    console.log('new')
-    console.log(newOpenKeys)
-
-    changeOpenKeys(nextOpenKeys)
+    this.setState({
+      openKeys: newOpenKeys,
+    })
+    store.set('openKeys', newOpenKeys)
   }
    renderMenuItem =
         ({id, router, name, icon, link, ...props }) =>
@@ -102,7 +97,7 @@ class Menus extends Component{
     return (
         <Menu
         selectedKeys={['21']}
-        openKeys={navOpenKeys}
+        openKeys={this.state.openKeys}
         mode="inline" 
         onOpenChange={this.onOpenChange}
         className='sidermenu' >{menus}</Menu>
