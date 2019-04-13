@@ -12,7 +12,7 @@ const Sider = ({location, changeTheme, navOpenKeys, changeOpenKeys, menu }) => {
   }
   return (
     <div>
-      <Layout.Sider collapsible collapsed={false} theme='light'>
+      <Layout.Sider collapsible collapsed={false} theme='light' trigger={null}>
         <Menus {...menusProps} />
       </Layout.Sider>
     </div>

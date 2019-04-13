@@ -33,14 +33,16 @@ export default class Admin extends Component {
             changeOpenKeys:this.changeOpenKeys,
         }
         const { match } = this.props;
+        console.log('match..')
+        console.log(match)
         return (<div className='admin_layout'>
             <Sider {...siderProps}></Sider>
             <div className='content_container'>
                 <div className='content_header'></div>
                 <div className='content_main'>
-                    <Route key='manage' path={`${match.path}/manage`} component={Manage}/>
+                    <Route key='article/list' path={`${match.path}/article/list`} component={Manage}/>
                     <Route key='tag' path={`${match.path}/tag`} component={Tag}/>
-                    <Route key='publish' path={`${match.path}/publish`} component={Publish}/>
+                    <Route key='article/publish' path={`${match.path}/article/publish`} component={Publish}/>
                     <Route key='edit/:id' path={`${match.path}/edit/:id`} component={Publish}/>
                 </div>
                 <div className='content_footer'>

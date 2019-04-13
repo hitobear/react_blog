@@ -1,4 +1,5 @@
 import { cloneDeep } from 'lodash'
+import pathToRegexp from 'path-to-regexp'
 
 export function arrayToTree(
     array,
@@ -30,11 +31,18 @@ export function arrayToTree(
   export function queryAncestors(array, current, parentId, id = 'id') {
     const result = [current]
     const hashMap = new Map()
+    console.log('array')
+    console.log(array)
     array.forEach(item => hashMap.set(item[id], item))
-  
+    console.log('listarray')
+    console.log(hashMap)
     const getPath = current => {
+      console.log('currentin..')
+      console.log(current)
       const currentParentId = hashMap.get(current[id])[parentId]
       if (currentParentId) {
+        console.log('currentparentid')
+        console.log(currentParentId)
         result.push(hashMap.get(currentParentId))
         getPath(hashMap.get(currentParentId))
       }
@@ -42,4 +50,8 @@ export function arrayToTree(
   
     getPath(current)
     return result
+  }
+
+  export function pathMatchRegexp(regexp, pathname) {
+    return pathToRegexp(regexp).exec(pathname)
   }

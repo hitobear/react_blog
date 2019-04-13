@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom'
 import store from 'store'
 import './index.less'
 import {
-    arrayToTree
+    arrayToTree,
+    pathMatchRegexp,
+    queryAncestors
   } from '../../../utils'
 import pathToRegexp from 'path-to-regexp'
 
@@ -89,6 +91,17 @@ class Menus extends Component{
       break
     }
   }
+
+  const currentMenu = menu.find(
+    _ => _.router && pathMatchRegexp(_.router, location.pathname)
+  )
+
+  const selectedKeys = currentMenu
+  ? queryAncestors(menu, currentMenu, 'menuParentId').map(_ => _.id)
+  : []
+
+  console.log('current')
+  console.log(selectedKeys)
     const menuTree = arrayToTree(menu, 'id', 'menuParentId')
     const menus=this.generateMenus(menuTree)
     console.log(menus)
@@ -96,7 +109,7 @@ class Menus extends Component{
     console.log(navOpenKeys)
     return (
         <Menu
-        selectedKeys={['21']}
+        selectedKeys={selectedKeys}
         openKeys={this.state.openKeys}
         mode="inline" 
         onOpenChange={this.onOpenChange}
